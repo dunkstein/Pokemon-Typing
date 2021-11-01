@@ -1,6 +1,4 @@
 #Greenfoot project file
-class.MyWorld.image=bathroom-tile.jpg
-class.titlePage.image=bricks3.jpg
 dependency1.from=titlePage
 dependency1.to=MyWorld
 dependency1.type=UsesDependency
@@ -8,7 +6,7 @@ editor.fx.0.height=737
 editor.fx.0.width=814
 editor.fx.0.x=360
 editor.fx.0.y=28
-height=592
+height=838
 package.numDependencies=1
 package.numTargets=2
 project.charset=UTF-8
@@ -40,7 +38,7 @@ target2.width=120
 target2.x=0
 target2.y=0
 version=3.0.0
-width=824
-world.lastInstantiated=titlePage
-xPosition=479
-yPosition=138
+width=1550
+world.lastInstantiated=MyWorld
+xPosition=0
+yPosition=0
