@@ -1,10 +1,11 @@
 #Greenfoot project file
 class.MyWorld.image=bathroom-tile.jpg
 class.titlePage.image=237f24d68d35dd586966d7061477650a564e8846_hq.jpg
-dependency1.from=titlePage
-dependency1.to=Label
+dependency1.from=mapOne
+dependency1.to=mapTwo
 dependency1.type=UsesDependency
 dependency2.from=titlePage
+<<<<<<< Updated upstream
 dependency2.to=MyWorld
 dependency2.type=UsesDependency
 editor.fx.0.height=737
@@ -14,6 +15,26 @@ editor.fx.0.y=92
 height=920
 package.numDependencies=2
 package.numTargets=3
+=======
+dependency2.to=Label
+dependency2.type=UsesDependency
+dependency3.from=titlePage
+dependency3.to=mapOne
+dependency3.type=UsesDependency
+dependency4.from=mapTwo
+dependency4.to=mapThree
+dependency4.type=UsesDependency
+dependency5.from=mapThree
+dependency5.to=mapOne
+dependency5.type=UsesDependency
+editor.fx.0.height=737
+editor.fx.0.width=814
+editor.fx.0.x=360
+editor.fx.0.y=60
+height=920
+package.numDependencies=5
+package.numTargets=5
+>>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
