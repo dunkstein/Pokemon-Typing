@@ -16,7 +16,7 @@ public class titlePage extends World
     public titlePage()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(600, 400, 1); 
+        super(16*60, 9*60, 1);
         Greenfoot.start();
         addObject(titleLabel, getWidth()/2, getHeight()/2);
     }
