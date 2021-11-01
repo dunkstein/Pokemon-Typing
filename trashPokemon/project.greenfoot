@@ -1,14 +1,19 @@
 #Greenfoot project file
+class.MyWorld.image=bathroom-tile.jpg
+class.titlePage.image=237f24d68d35dd586966d7061477650a564e8846_hq.jpg
 dependency1.from=titlePage
-dependency1.to=MyWorld
+dependency1.to=Label
 dependency1.type=UsesDependency
+dependency2.from=titlePage
+dependency2.to=MyWorld
+dependency2.type=UsesDependency
 editor.fx.0.height=737
 editor.fx.0.width=814
-editor.fx.0.x=360
-editor.fx.0.y=28
-height=838
-package.numDependencies=1
-package.numTargets=2
+editor.fx.0.x=664
+editor.fx.0.y=92
+height=725
+package.numDependencies=2
+package.numTargets=3
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -31,21 +36,21 @@ target1.width=120
 target1.x=0
 target1.y=0
 target2.height=70
-target2.name=MyWorld
+target2.name=Label
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=120
 target2.x=0
 target2.y=0
+target3.height=70
+target3.name=MyWorld
+target3.showInterface=false
+target3.type=ClassTarget
+target3.width=120
+target3.x=0
+target3.y=0
 version=3.0.0
-<<<<<<< Updated upstream
-width=1550
-world.lastInstantiated=MyWorld
-xPosition=0
-yPosition=0
-=======
 width=1205
 world.lastInstantiated=titlePage
-xPosition=262
-yPosition=39
->>>>>>> Stashed changes
+xPosition=229
+yPosition=125
