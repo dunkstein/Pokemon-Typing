@@ -4,6 +4,7 @@ class.titlePage.image=237f24d68d35dd586966d7061477650a564e8846_hq.jpg
 dependency1.from=mapOne
 dependency1.to=mapTwo
 dependency1.type=UsesDependency
+<<<<<<< Updated upstream
 dependency2.from=titlePage
 <<<<<<< Updated upstream
 dependency2.to=MyWorld
@@ -20,6 +21,43 @@ dependency2.to=Label
 dependency2.type=UsesDependency
 dependency3.from=titlePage
 dependency3.to=mapOne
+=======
+dependency10.from=mapTwo
+dependency10.to=Player
+dependency10.type=UsesDependency
+dependency11.from=mapThree
+dependency11.to=NextLevelBox
+dependency11.type=UsesDependency
+dependency12.from=mapThree
+dependency12.to=Player
+dependency12.type=UsesDependency
+dependency13.from=mapThree
+dependency13.to=mapOne
+dependency13.type=UsesDependency
+dependency14.from=Player
+dependency14.to=mapTwo
+dependency14.type=UsesDependency
+dependency15.from=Player
+dependency15.to=mapThree
+dependency15.type=UsesDependency
+dependency16.from=Player
+dependency16.to=battleWorld
+dependency16.type=UsesDependency
+dependency17.from=Player
+dependency17.to=ImpassableBox
+dependency17.type=UsesDependency
+dependency18.from=Player
+dependency18.to=NextLevelBox
+dependency18.type=UsesDependency
+dependency19.from=Player
+dependency19.to=badGuy
+dependency19.type=UsesDependency
+dependency2.from=mapOne
+dependency2.to=ImpassableBox
+dependency2.type=UsesDependency
+dependency3.from=mapOne
+dependency3.to=Player
+>>>>>>> Stashed changes
 dependency3.type=UsesDependency
 dependency4.from=mapTwo
 dependency4.to=mapThree
@@ -27,6 +65,7 @@ dependency4.type=UsesDependency
 dependency5.from=mapThree
 dependency5.to=mapOne
 dependency5.type=UsesDependency
+<<<<<<< Updated upstream
 editor.fx.0.height=737
 editor.fx.0.width=814
 editor.fx.0.x=360
@@ -34,6 +73,27 @@ editor.fx.0.y=60
 height=920
 package.numDependencies=5
 package.numTargets=5
+>>>>>>> Stashed changes
+=======
+dependency6.from=titlePage
+dependency6.to=mapOne
+dependency6.type=UsesDependency
+dependency7.from=battleWorld
+dependency7.to=Images
+dependency7.type=UsesDependency
+dependency8.from=battleWorld
+dependency8.to=TextReader
+dependency8.type=UsesDependency
+dependency9.from=mapTwo
+dependency9.to=NextLevelBox
+dependency9.type=UsesDependency
+editor.fx.0.height=737
+editor.fx.0.width=811
+editor.fx.0.x=326
+editor.fx.0.y=193
+height=775
+package.numDependencies=19
+package.numTargets=12
 >>>>>>> Stashed changes
 project.charset=UTF-8
 publish.hasSource=false
@@ -70,8 +130,58 @@ target3.type=ClassTarget
 target3.width=120
 target3.x=0
 target3.y=0
+<<<<<<< Updated upstream
+=======
+target4.height=70
+target4.name=badGuy
+target4.showInterface=false
+target4.type=ClassTarget
+target4.width=120
+target4.x=0
+target4.y=0
+target5.height=70
+target5.name=Images
+target5.showInterface=false
+target5.type=ClassTarget
+target5.width=120
+target5.x=0
+target5.y=0
+target6.height=70
+target6.name=Label
+target6.showInterface=false
+target6.type=ClassTarget
+target6.width=120
+target6.x=0
+target6.y=0
+target7.height=70
+target7.name=NextLevelBox
+target7.showInterface=false
+target7.type=ClassTarget
+target7.width=120
+target7.x=0
+target7.y=0
+target8.height=70
+target8.name=mapThree
+target8.showInterface=false
+target8.type=ClassTarget
+target8.width=120
+target8.x=0
+target8.y=0
+target9.height=70
+target9.name=TextReader
+target9.showInterface=false
+target9.type=ClassTarget
+target9.width=120
+target9.x=0
+target9.y=0
+>>>>>>> Stashed changes
 version=3.0.0
 width=1205
 world.lastInstantiated=titlePage
+<<<<<<< Updated upstream
 xPosition=219
 yPosition=12
+=======
+xPosition=196
+yPosition=138
+>>>>>>> Stashed changes
