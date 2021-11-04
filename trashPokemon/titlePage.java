@@ -16,21 +16,18 @@ public class titlePage extends World
      */
     public titlePage()
     {    
-        // Create a new world with 960x600 cells with a cell size of 1x1 pixels.
-        super(960, 600, 1);
+        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        super(960, 540, 1);
+        setBackground("Title.jpg");
         Greenfoot.start();
-<<<<<<< Updated upstream
         addObject(titleLabel, getWidth()/2, getHeight()/3);
-=======
-        addObject(titleLabel, getWidth()/2, getHeight()/4);
->>>>>>> Stashed changes
         addObject(startLabel, getWidth()/2, (getHeight()/3)*2);
     }
     public void act()
     {
         //Start game if space bar is pressed
-        if (Greenfoot.isKeyDown("space")){
-            MyWorld gameWorld = new MyWorld();
+        if ("space".equals(Greenfoot.getKey())){
+            instructions gameWorld = new instructions();
             Greenfoot.setWorld(gameWorld);
         }
     }

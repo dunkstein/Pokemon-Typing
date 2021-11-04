@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.target=Player
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ Player\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment1.params=curWorld
+comment1.target=Player(java.lang.String)
+comment2.params=
+comment2.target=void\ act()
+comment3.params=x\ y
+comment3.target=void\ Move(int,\ int)
+comment4.params=direction
+comment4.target=void\ SetAnimation(java.lang.String)
+comment5.params=curWorld
+comment5.target=void\ nextWorld(java.lang.String)
+numComments=6
