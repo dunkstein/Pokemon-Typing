@@ -18,6 +18,7 @@ public class battleWorld extends World
     private Stack<Character> userInput = new Stack<Character>();
     private ArrayList<String> hard = new ArrayList<String>();
     private ArrayList<String> easy = new ArrayList<String>();
+    private Label typedText = new Label ("",100);
     
     private boolean typing = false;
     private String curAction = "choosing";
@@ -75,13 +76,14 @@ public class battleWorld extends World
                 removeObject(select);
                 removeObject(fight);
                 removeObject(bag);
-                key = null;
                 if(curUIAction.equals("fight"))
                 {
+                    key = null;
                     curAction = "fighting";
                 }
                 else
                 {
+                    key = null;
                     curUIAction = "fight";
                     curAction = "inventory";
                 }
@@ -111,9 +113,11 @@ public class battleWorld extends World
                 removeObject(moveOne);
                 removeObject(moveTwo);
                 removeObject(select);
+                
                 if("enter".equals(key))
                 {
                     removeObject(ui);
+                    key = null;
                     while (!userInput.isEmpty())
                     {
                         userInput.pop();
@@ -135,16 +139,32 @@ public class battleWorld extends World
             }
         }
         
-        /**
-         * Does nothing right now
-         */
         if (curAction.equals("typing"))
         {
             addObject(box, 480, 465);
-            
+            addObject (typedText, getWidth()/2, getHeight()/2);
+            System.out.println(String.join("", (userInput.toString().replaceAll("\\[","").replaceAll("]",""))));
+            if (key != null){
+                if ("backspace".equals(key)){
+                    if (!userInput.isEmpty()){
+                        userInput.pop();
+                        typedText.setValue((userInput.toString().replaceAll("\\[","").replaceAll("]","")));
+                    }
+                } else if ("enter".equals(key)){
+                    curAction = "checking";
+                } else if(key != "space"){
+                userInput.push(key.charAt(0));
+                typedText.setValue(userInput.toString().replaceAll("\\[","").replaceAll("]",""));
+                } else {
+                    userInput.push(' ');
+                }
             //Main typing part
         }
+    }
         
-        key = null;
+        if (curAction.equals("checking")){
+            
+        }
+        
     }
 }
