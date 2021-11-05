@@ -1,4 +1,5 @@
 import greenfoot.*;
+import java.util.List;
 /**
  * Write a description of class Player here.
  * 
@@ -9,78 +10,109 @@ public class Player extends Actor
 {
     private String curWorld;
     
+    int moveX;
+    int moveY;
     //Might need a constructor later to store the trash Pokemon the player owns
-    public Player(String curWorld)
-    {
+    public Player(String curWorld){
+        
         this.curWorld = curWorld;
         setImage("trainer(initial).png");
+        
     }
-    public void act()
-    {
-        int x = 0;
-        int y = 0;
-        if (Greenfoot.isKeyDown("right")||Greenfoot.isKeyDown("d")){
-            x+=3;
-        }
-        if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a")){
-            x+=-3;
-        }
-        if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")){
-            y+=-3;
-        }
-        if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s")){
-            y+=3;
-        }
-        if(x > 0){
-            setImage("trainer(right).png");
-        }else if(x < 0){
-            setImage("trainer(left).png");
-        }
-        if(y > 0){
-            SetAnimation("down");
-        }else if(y < 0){
-            SetAnimation("up");
-        }
-        Move(x,y);
-        if(isTouching(ImpassableBox.class)){
-            setLocation(getX()-x,getY()-y);
-        }
+    public void act(){
+
+        MovementControl();
         nextWorld(curWorld);
-    }
-    public void Move(int x, int y){
-        setLocation(getX() + x, getY() + y);
+        
     }
     
+    public void Move(int x, int y){
+        setLocation(getX()+x, getY()+y);
+    }
+    public void MovementControl(){
+        boolean up = false, down = false, left = false, right = false;
+        if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")){up=true;}
+        if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s")){down=true;}
+        if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a")){left=true;}
+        if(Greenfoot.isKeyDown("right")||Greenfoot.isKeyDown("d")){right=true;}
+        GreenfootImage img=new GreenfootImage("trainer(initial).png");
+        int img_x=img.getWidth(),img_y=img.getHeight();
+        int x=0,y=0;
+        boolean upper_hit=false,lower_hit=false,left_hit=false,right_hit=false;
+        for(int junk = 0; junk<3; junk++){
+            if(up){y-=1;}
+            if(down){y+=1;}
+            if(left){x-=1;}
+            if(right){x+=1;}
+            List<ImpassableBox> object;
+            for(int i = -img_x/2; i < img_x/2; i++){
+                if(!upper_hit){
+                    object = getObjectsAtOffset(x+i, y-img_y/2-1, ImpassableBox.class);
+                    if(object.size()!=0){upper_hit=true;up=false;}
+                }
+                if(!lower_hit){
+                    object = getObjectsAtOffset(x+i, y+img_y/2, ImpassableBox.class);
+                    if(object.size()!=0){lower_hit=true;down=false;}
+                }
+            }
+            for(int i = -img_y/2; i < img_y/2; i++){
+                if(!left_hit){
+                    object = getObjectsAtOffset(x-img_x/2-1, y+i, ImpassableBox.class);
+                    if(object.size()!=0){left_hit=true;left=false;}
+                }
+                if(!right_hit){
+                    object = getObjectsAtOffset(x+img_x/2, y+i, ImpassableBox.class);
+                    if(object.size()!=0){right_hit=true;right=false;}
+                }
+            }
+            if(upper_hit){y=Math.max(0,y);}
+            if(lower_hit){y=Math.min(0,y);}
+            if(left_hit){x=Math.max(0,x);}
+            if(right_hit){x=Math.min(0,x);}
+        }
+        if(x==0 & y==0){
+            setImage("trainer(initial).png");
+        }else{
+            if(x>0){setImage("trainer(right).png");}
+            else if(x<0){setImage("trainer(left).png");}
+            if(y>0){SetAnimation("down");}
+            else if(y<0){SetAnimation("up");}
+        }
+        Move(x,y);
+    }
+    
+    //clamp value between min and max, useful for limiting thing inside a bound
+    public int clamp(int val, int min, int max){return Math.max(min, Math.min(max, val));}
     private class Animation_Table{
-        //           tot frame  cur frame
+        //            tot_frame  cur_frame
         int[][] table = {{2,       0}, //up
                          {2,       0}, //down
                          {2,       0}, //left
                          {2,       0}};//right
         public int[] get(String dir){
-            if(dir == "up"){return table[0];}
-            else if(dir == "down"){return table[1];}
-            else if(dir == "left"){return table[2];}
-            else if(dir == "right"){return table[3];}
-
-            int[] tmp = {-1,-1};return tmp;
+            if(dir=="up"){return table[0];}
+            else if(dir=="down"){return table[1];}
+            else if(dir=="left"){return table[2];}
+            else if(dir=="right"){return table[3];}
+            //STFU about the error
+            int[]tmp={-1,-1};return tmp;
         }
-        public void set(String dir, int[] t){
-            if(dir == "up"){table[0] = t;}
-            else if(dir == "down"){table[1] = t;}
-            else if(dir == "left"){table[2] = t;}
-            else if(dir == "right"){table[3] = t;}
+        public void set(String dir, int[] tab){
+            if(dir=="up"){table[0]=tab;}
+            else if(dir=="down"){table[1]=tab;}
+            else if(dir=="left"){table[2]=tab;}
+            else if(dir=="right"){table[3]=tab;}
         }
     }
-    Animation_Table anim_tab = new Animation_Table();
-    SimpleTimer timer = new SimpleTimer();
+    private Animation_Table anim_tab = new Animation_Table();
+    private SimpleTimer timer = new SimpleTimer();
     int dt;
-    int time = 0;
+    int time=0;
     public void SetAnimation(String direction){
-        String cur_frame_name = "trainer(" + direction + ")";
-        dt = timer.millisElapsed();
+        String cur_frame_name="trainer("+direction+")";
+        dt=timer.millisElapsed();
         time+=dt;
-        int[] temp = anim_tab.get(direction);
+        int[]temp=anim_tab.get(direction);
         if(time > 500){
             time-=500;
             temp[1]+=1;
@@ -88,27 +120,25 @@ public class Player extends Actor
                 temp[1]=0;
             }
         }
-        cur_frame_name += temp[1]+".png";
+        cur_frame_name+=temp[1]+".png";
         setImage(cur_frame_name);
         timer.mark();
     }
     
-    public void nextWorld(String curWorld)
-    {
-        if (isTouching(NextLevelBox.class)){
-
-            if (curWorld.equals("Level One")){
-                mapTwo gameWorld = new mapTwo();
+    public void nextWorld(String curWorld){
+        if(isTouching(NextLevelBox.class)){
+            if(curWorld.equals("Level One")){
+                mapTwo gameWorld=new mapTwo();
                 Greenfoot.setWorld(gameWorld);
-            } else if (curWorld.equals("Level Two")){
-                mapThree gameWorld = new mapThree();
+            }else if (curWorld.equals("Level Two")){
+                mapThree gameWorld=new mapThree();
                 Greenfoot.setWorld(gameWorld);
             }
         } 
-        if (isTouching(badGuy.class)){
-                battleWorld gameWorld = new battleWorld();
-                Greenfoot.setWorld(gameWorld);
+        if(isTouching(badGuy.class)){
+            battleWorld gameWorld=new battleWorld();
+            Greenfoot.setWorld(gameWorld);
         }
     }
+    
 }
-
