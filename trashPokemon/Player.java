@@ -113,8 +113,7 @@ public class Player extends Actor
             else if(dir=="down"){return table[1];}
             else if(dir=="left"){return table[2];}
             else if(dir=="right"){return table[3];}
-            //STFU about the error
-            int[]tmp={-1,-1};return tmp;
+            return null;//STFU about the error
         }
         public void set(String dir,int[]tab){
             if(dir=="up"){table[0]=tab;}
