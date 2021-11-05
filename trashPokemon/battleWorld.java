@@ -8,6 +8,7 @@ import java.util.*;
  */
 public class battleWorld extends World
 {
+    private Random rand = new Random();
     private Images box = new Images("textBox.png", 868, 154);
     private Images ui = new Images("battleUI.png", 472, 188);
     private Images select = new Images("selector.png", 28, 44);
@@ -18,6 +19,13 @@ public class battleWorld extends World
     private Stack<Character> userInput = new Stack<Character>();
     private ArrayList<String> hard = new ArrayList<String>();
     private ArrayList<String> easy = new ArrayList<String>();
+    private ArrayList<String> query = new ArrayList<String>();
+    private Label typedText;
+    private Label generatedWords;
+    private Label winOrLoss = new Label ("",40);
+    private String typed;
+    private String generated;
+    
     
     private boolean typing = false;
     private String curAction = "choosing";
@@ -34,7 +42,6 @@ public class battleWorld extends World
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 576, 1);
         setBackground("TestBackground.png");
-        
         try
         {
             TextReader.readInto(hard, easy);
@@ -75,13 +82,14 @@ public class battleWorld extends World
                 removeObject(select);
                 removeObject(fight);
                 removeObject(bag);
-                key = null;
                 if(curUIAction.equals("fight"))
                 {
+                    key = null;
                     curAction = "fighting";
                 }
                 else
                 {
+                    key = null;
                     curUIAction = "fight";
                     curAction = "inventory";
                 }
@@ -111,20 +119,41 @@ public class battleWorld extends World
                 removeObject(moveOne);
                 removeObject(moveTwo);
                 removeObject(select);
+                
                 if("enter".equals(key))
                 {
                     removeObject(ui);
+                    key = null;
                     while (!userInput.isEmpty())
                     {
                         userInput.pop();
                     }
                     if(moveSelection.equals("one"))
                     {
+                        typedText = new Label ("",40);
+                        typedText.setFillColor(Color.GREEN);
+                        generatedWords = new Label ("",40);
+                        generatedWords.setFillColor(Color.GREEN);
                         //Generate words from the easy array
+                        // 6 words
+                        for (int i = 0; i < 6; i++)
+                        {
+                            String wordToAdd = easy.get(rand.nextInt(6492));
+                            query.add(wordToAdd);
+                        }
                     }
                     else
                     {
+                        typedText = new Label ("",20);
+                        typedText.setFillColor(Color.GREEN);
+                        generatedWords = new Label ("",20);
+                        generatedWords.setFillColor(Color.GREEN);
                         //Generate words from the hard array
+                        for (int i = 0; i < 10; i++)
+                        {
+                            String wordToAdd = hard.get(rand.nextInt(3404));
+                            query.add(wordToAdd);
+                        }
                     }
                     curAction = "typing";
                 }
@@ -135,16 +164,52 @@ public class battleWorld extends World
             }
         }
         
-        /**
-         * Does nothing right now
-         */
         if (curAction.equals("typing"))
         {
-            addObject(box, 480, 465);
             
+            addObject(box, 480, 465);
+            addObject (generatedWords, getWidth()/2, getHeight()/4*3);
+            generated = (query.toString().replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", ""));
+            generatedWords.setValue(generated);
+            addObject (typedText, getWidth()/2, getHeight()/6*5);
+            
+            if (key != null){
+                if ("backspace".equals(key)){
+                    if (!userInput.isEmpty()){
+                        userInput.pop();
+                    }
+                } else if ("enter".equals(key)){
+                    curAction = "checking";
+                    key = null;
+                } else if(key != "space"){
+                    userInput.push(key.charAt(0));
+                } else {
+                    userInput.push('_');
+                }
+                typed = (userInput.toString().replaceAll("\\[", "").replaceAll("]", "").replaceAll(",", "").trim().replaceAll(" ", ""));
+                typedText.setValue(typed);
             //Main typing part
         }
+    }
         
-        key = null;
+        if (curAction.equals("checking")){
+                typedText.setValue("");
+                generatedWords.setValue("");
+                addObject (winOrLoss, getWidth()/2, getHeight()/4*3);
+            if(generated.equals(typed.replaceAll("_", " "))){
+                winOrLoss.setValue("You won. Press Enter to continue.");
+                if ("enter".equals(key)){
+                    mapOne gameWorld = new mapOne();
+                    Greenfoot.setWorld(gameWorld);
+                }
+            } else {
+                winOrLoss.setValue("You lost. Press Enter to continue.");
+                if ("enter".equals(key)){
+                    gameOver gameWorld = new gameOver();
+                    Greenfoot.setWorld(gameWorld);
+                }
+            }
+        }
+        
     }
 }
