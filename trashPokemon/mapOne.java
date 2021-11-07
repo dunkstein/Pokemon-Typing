@@ -59,10 +59,28 @@ public class mapOne extends World
         addObject(bottom, getWidth()/5*3, getHeight()-15);
         
         Player pc = new Player("Level One");
-        addObject(pc, 430, 135);
+        if (Player.returning)
+        {
+            addObject(pc, Player.curPos[0], Player.curPos[1]);
+            badGuy.defeat(Player.nameOfbadGuy);
+            Player.firstEntry = false;
+            Player.returning = false;
+        }
+        else
+        {
+            addObject(pc, 430, 135);
+        }
         
-        badGuy evilOne = new badGuy();
-        addObject(evilOne, 810, 135);
+        badGuy evilOne = new badGuy("topRight", "trainer(initial).png");
+        // Make all badGuy(s) valid upon first load of the map
+        if(Player.firstEntry)
+        {
+            evilOne.makeValid();
+        }
+        if(evilOne.validity())
+        {
+            addObject(evilOne, 810, 135);
+        }
     }
     public void act()
     {
