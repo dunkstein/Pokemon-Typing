@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.*;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -9,9 +8,9 @@ import java.util.*;
 public class mapOne extends World
 {
     public static GreenfootSound music = new GreenfootSound("routeMusic.mp3");
-    private Random rand = new Random();
-    private String[] enemySprites = {"enemyOne.png", "enemyTwo.png", "enemyThree.png",
-        "enemyFour.png", "enemyFive.png"};
+    private badGuy evilOne = new badGuy("topRight1", "enemyOne.png");
+    private badGuy evilTwo = new badGuy("midLeft1", "enemyFour.png");
+    private badGuy evilThree = new badGuy("bottom1", "enemyFive.png");
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -76,9 +75,6 @@ public class mapOne extends World
             addObject(pc, 430, 135);
         }
         
-        badGuy evilOne = new badGuy("topRight", enemySprites[rand.nextInt(5)]);
-        badGuy evilTwo = new badGuy("midLeft", enemySprites[rand.nextInt(5)]);
-        badGuy evilThree = new badGuy("bottom", enemySprites[rand.nextInt(5)]);
         // Make all badGuy(s) valid upon first load of the map
         if(Player.firstEntry)
         {

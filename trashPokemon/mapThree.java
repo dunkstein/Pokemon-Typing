@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.*;
+
 /**
  * Write a description of class mapThree here.
  * 
@@ -8,7 +8,10 @@ import java.util.*;
  */
 public class mapThree extends World
 {
-    private Random rand = new Random();
+    // Create all the bad guys
+    private badGuy evilOne = new badGuy("midRight3", "enemyFive.png");
+    private badGuy evilTwo = new badGuy("midLeft3", "enemyTwo.png");
+    private badGuy evilThree = new badGuy("bottom3", "enemyOne.png");
     /**
      * Constructor for objects of class mapThree.
      * 
@@ -25,13 +28,40 @@ public class mapThree extends World
         mapOne.music.playLoop();
         Player pc = new Player("Level Three");
         addObject(pc, 800, 30);
+        
+        if (Player.returning)
+        {
+            addObject(pc, Player.curPos[0], Player.curPos[1]);
+            badGuy.defeat(Player.nameOfbadGuy);
+            Player.firstEntry = false;
+            Player.returning = false;
+        }
+        else
+        {
+            addObject(pc, 800, 30);
+        }
+        
+        // Make all badGuy(s) valid upon first load of the map
+        if(Player.firstEntry)
+        {
+            evilOne.makeValid();
+            evilTwo.makeValid();
+            evilThree.makeValid();
+        }
+        if(evilOne.validity())
+        {
+            addObject(evilOne, 565, 140);
+        }
+        if(evilTwo.validity())
+        {
+            addObject(evilTwo, 360, 140);
+        }
+        if(evilThree.validity())
+        {
+            addObject(evilThree, 477, 300);
+        }
     }
     public void act()
     {
-        //Start game if space bar is pressed
-        if (Greenfoot.isKeyDown("space")){
-            mapOne gameWorld = new mapOne();
-            Greenfoot.setWorld(gameWorld);
-        }
     }
 }

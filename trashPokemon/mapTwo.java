@@ -1,5 +1,4 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.*;
 /**
  * Write a description of class mapTwo here.
  * 
@@ -7,8 +6,11 @@ import java.util.*;
  * @version (a version number or a date)
  */
 public class mapTwo extends World
-{
-    private Random rand = new Random();
+{       
+    // Create all the bad guys
+    badGuy evilOne = new badGuy("topLeft2", "enemyFour.png");
+    badGuy evilTwo = new badGuy("middle2", "enemyTwo.png");
+    badGuy evilThree = new badGuy("bottom2", "enemyThree.png");
     /**
      * Constructor for objects of class mapTwo.
      * 
@@ -22,8 +24,39 @@ public class mapTwo extends World
         addObject(nextLevel, 700, 586);
         
         mapOne.music.playLoop();
+        
         Player pc = new Player("Level Two");
-        addObject(pc, 750, 40);
+        if (Player.returning)
+        {
+            addObject(pc, Player.curPos[0], Player.curPos[1]);
+            badGuy.defeat(Player.nameOfbadGuy);
+            Player.firstEntry = false;
+            Player.returning = false;
+        }
+        else
+        {
+            addObject(pc, 750, 40);
+        }
+        
+        // Make all badGuy(s) valid upon first load of the map
+        if(Player.firstEntry)
+        {
+            evilOne.makeValid();
+            evilTwo.makeValid();
+            evilThree.makeValid();
+        }
+        if(evilOne.validity())
+        {
+            addObject(evilOne, 650, 160);
+        }
+        if(evilTwo.validity())
+        {
+            addObject(evilTwo, 458, 366);
+        }
+        if(evilThree.validity())
+        {
+            addObject(evilThree, 610, 500);
+        }
     }
     public void act()
     {
