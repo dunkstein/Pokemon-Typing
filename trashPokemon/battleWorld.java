@@ -50,6 +50,11 @@ public class battleWorld extends World
     private String moveSelection = "one";
     private String key = null;
     
+    private GreenfootSound battleMusic = new GreenfootSound("battleMusic.mp3");
+    private GreenfootSound bAttack = new GreenfootSound("Quick Attack.mp3");
+    private GreenfootSound razorLeafAttack = new GreenfootSound("Razor Leaf.mp3");
+    private GreenfootSound winMusic = new GreenfootSound("victoryMusic.mp3");
+    
     /**
      * Constructor for objects of class battleWorld.
      * 
@@ -58,7 +63,13 @@ public class battleWorld extends World
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(960, 576, 1);
+        mapOne.music.stop();
         setBackground("TestBackground.png");
+        battleMusic.setVolume(15);
+        winMusic.setVolume(15);
+        bAttack.setVolume(20);
+        razorLeafAttack.setVolume(20);
+        battleMusic.playLoop();
         try
         {
             TextReader.readInto(hard, easy);
@@ -257,6 +268,7 @@ public class battleWorld extends World
                 if("enter".equals(key))
                 {
                     // Use potion
+                    key = null;
                     if (Player.potions > 0)
                     {
                         Player.usePotion();
@@ -288,9 +300,6 @@ public class battleWorld extends World
                     if (!userInput.isEmpty()){
                         userInput.pop();
                     }
-                } else if ("enter".equals(key)){
-                    curAction = "checking";
-                    key = null;
                 } else if(key != "space"){
                     userInput.push(Character.toString(key.charAt(0)));
                 } else {
@@ -334,6 +343,13 @@ public class battleWorld extends World
                 // Reset timer
                 timer = 0;
                 
+                if (moveSelection.equals("one"))
+                {
+                    bAttack.play();
+                }else
+                {
+                    razorLeafAttack.play();
+                }
                 // Reset move selection
                 moveSelection = "one";
                 
@@ -371,6 +387,7 @@ public class battleWorld extends World
         {
             Player.takeDamage();
             // Play sound
+            bAttack.play();
             curAction = "damageOfEnemy";
         }
         if (curAction.equals("damageOfEnemy"))
@@ -413,12 +430,14 @@ public class battleWorld extends World
             Notification.setFillColor(Color.BLACK);
             Notification.setLineColor(Color.WHITE);
             addObject(Notification, 480, 465);
+            battleMusic.stop();
+            winMusic.playLoop();
             if("enter".equals(key))
             {
                 removeObject(select);
                 removeObject(Notification);
                 removeObject(box);
-                
+                winMusic.stop();
                 if(Player.curWorld.equals("Level One"))
                 {
                     mapOne retWorld = new mapOne();

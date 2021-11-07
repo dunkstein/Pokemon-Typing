@@ -19,6 +19,7 @@ public class badGuy extends Actor
     {
         this.name = name;
         this.image = image;
+        setImage(image);
     }
     public static void defeat(badGuy guy)
     {

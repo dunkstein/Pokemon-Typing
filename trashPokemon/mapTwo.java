@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class mapTwo here.
  * 
@@ -8,7 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class mapTwo extends World
 {
-
+    private Random rand = new Random();
     /**
      * Constructor for objects of class mapTwo.
      * 
@@ -21,6 +21,7 @@ public class mapTwo extends World
         NextLevelBox nextLevel = new NextLevelBox(400, 50);
         addObject(nextLevel, 700, 586);
         
+        mapOne.music.playLoop();
         Player pc = new Player("Level Two");
         addObject(pc, 750, 40);
     }

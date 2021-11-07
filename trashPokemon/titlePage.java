@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class titlePage here.
  * 
@@ -20,6 +20,7 @@ public class titlePage extends World
         super(960, 540, 1);
         setBackground("Title.jpg");
         Greenfoot.start();
+        mapOne.music.stop();
         addObject(titleLabel, getWidth()/2, getHeight()/3);
         addObject(startLabel, getWidth()/2, (getHeight()/3)*2);
     }

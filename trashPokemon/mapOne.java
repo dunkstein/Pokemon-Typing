@@ -1,5 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-
+import java.util.*;
 /**
  * Write a description of class MyWorld here.
  * 
@@ -8,7 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class mapOne extends World
 {
-
+    public static GreenfootSound music = new GreenfootSound("routeMusic.mp3");
+    private Random rand = new Random();
+    private String[] enemySprites = {"enemyOne.png", "enemyTwo.png", "enemyThree.png",
+        "enemyFour.png", "enemyFive.png"};
     /**
      * Constructor for objects of class MyWorld.
      * 
@@ -58,6 +61,8 @@ public class mapOne extends World
         ImpassableBox bottom = new ImpassableBox (180,1);
         addObject(bottom, getWidth()/5*3, getHeight()-15);
         
+        music.setVolume(15);
+        music.playLoop();
         Player pc = new Player("Level One");
         if (Player.returning)
         {
@@ -71,15 +76,27 @@ public class mapOne extends World
             addObject(pc, 430, 135);
         }
         
-        badGuy evilOne = new badGuy("topRight", "trainer(initial).png");
+        badGuy evilOne = new badGuy("topRight", enemySprites[rand.nextInt(5)]);
+        badGuy evilTwo = new badGuy("midLeft", enemySprites[rand.nextInt(5)]);
+        badGuy evilThree = new badGuy("bottom", enemySprites[rand.nextInt(5)]);
         // Make all badGuy(s) valid upon first load of the map
         if(Player.firstEntry)
         {
             evilOne.makeValid();
+            evilTwo.makeValid();
+            evilThree.makeValid();
         }
         if(evilOne.validity())
         {
             addObject(evilOne, 810, 135);
+        }
+        if(evilTwo.validity())
+        {
+            addObject(evilTwo, 430, 400);
+        }
+        if(evilThree.validity())
+        {
+            addObject(evilThree, 600, 500);
         }
     }
     public void act()
