@@ -20,7 +20,19 @@ public class titlePage extends World
         super(960, 540, 1);
         setBackground("Title.jpg");
         Greenfoot.start();
+        
+        // Stop mapOne music in case of "reset" button usage
         mapOne.music.stop();
+        
+        // Stop battleWorld music in case of "reset" button usage
+        battleWorld.battleMusic.stop();
+        
+        
+        // In case of using Greenfoot's "reset" button, the list of valid bad guys
+        // should be cleared in order to reset the enemy spawns
+        badGuy.clearValid();
+        
+        // Add in the text containing 1. The title and 2. The next screen prompt
         addObject(titleLabel, getWidth()/2, getHeight()/3);
         addObject(startLabel, getWidth()/2, (getHeight()/3)*2);
     }

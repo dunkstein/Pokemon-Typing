@@ -37,6 +37,10 @@ public class badGuy extends Actor
     {
         valid.add(name);
     }
+    public static void clearValid()
+    {
+        valid.clear();
+    }
     public void act()
     {
         // Add your action code here.

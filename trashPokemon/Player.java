@@ -165,6 +165,8 @@ public class Player extends Actor
             }else if (curWorld.equals("Level Two")){
                 mapThree gameWorld=new mapThree();
                 Greenfoot.setWorld(gameWorld);
+            }else if (curWorld.equals("Level Three")){
+                // Go to victory (end game) screen
             }
         } 
         if(isTouching(badGuy.class)){
