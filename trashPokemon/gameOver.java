@@ -1,13 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class gameOver here.
+ * A world that is shown to the user when they faint in battle
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kenneth Li 
+ * @version 1.0
  */
 public class gameOver extends World
 {
+    // Visuals
     Label gameOver = new Label("Game Over", 50);
     Label gameOverReason = new Label("Your pokemon fainted", 50);
     Label tip = new Label ("Try using a potion next time", 50);
@@ -20,7 +21,7 @@ public class gameOver extends World
      */
     public gameOver()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 531x448 cells with a cell size of 1x1 pixels.
         super(531, 448, 1); 
         setBackground("fainted.jpg");
         addObject(gameOver, getWidth()/2, getHeight()/6);
@@ -28,9 +29,9 @@ public class gameOver extends World
         addObject(tip, getWidth()/2, getHeight()/6*3);
         addObject(score, getWidth()/2, getHeight()/6*4);
         addObject(repeat, getWidth()/2, getHeight()/6*5);
-        battleWorld.battleMusic.stop();
-        lose.setVolume(20);
-        lose.play();
+        battleWorld.battleMusic.stop(); // stop music from the battleWorld
+        lose.setVolume(20); // make music quieter
+        lose.play(); // play losing music
     }
     public void act()
     {

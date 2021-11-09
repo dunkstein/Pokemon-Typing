@@ -10,6 +10,7 @@ import java.io.*;
  */
 public class TextReader  
 {
+    // url to read from
     static String url = "https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-no-swears.txt";
     
     public static void readInto(ArrayList<String> list1, ArrayList<String> list2) throws Exception
@@ -22,6 +23,7 @@ public class TextReader
         
         while ((word = in.readLine()) != null)
         {
+            // Words longer than 7 characters
             if (word.length() > 7)
             {
                 list1.add(word);
