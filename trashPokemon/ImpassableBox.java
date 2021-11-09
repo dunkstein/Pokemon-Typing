@@ -15,6 +15,8 @@ public class ImpassableBox extends Actor
         GreenfootImage boundingBox = new GreenfootImage(width, height);
         setImage(boundingBox);
         boundingBox.setColor(new Color(0, 0, 255));
-        boundingBox.fill();
+        
+        //code to see the boundaries
+        //boundingBox.fill();
     }
 }

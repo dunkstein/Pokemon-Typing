@@ -25,6 +25,21 @@ public class mapThree extends World
         NextLevelBox nextLevel = new NextLevelBox(150, 50);
         addObject(nextLevel, 475, 586);
         
+        ImpassableBox leftTree = new ImpassableBox (200,397);
+        addObject(leftTree, 0, getHeight()/2);
+        
+        ImpassableBox rightTree = new ImpassableBox (200,397);
+        addObject(rightTree, getWidth(), getHeight()/2);
+        
+        ImpassableBox ledge = new ImpassableBox (670,1);
+        addObject(ledge, getWidth()/2+25, getHeight()/5-10);
+        
+        ImpassableBox bottomLeft= new ImpassableBox (400,125);
+        addObject(bottomLeft, getWidth()/5, getHeight()/5*4+25);
+        
+        ImpassableBox bottomRight = new ImpassableBox (450,125);
+        addObject(bottomRight, getWidth()/5*4, getHeight()/5*4+25);
+        
         mapOne.music.playLoop();
         Player pc = new Player("Level Three");
         addObject(pc, 800, 30);
@@ -60,8 +75,5 @@ public class mapThree extends World
         {
             addObject(evilThree, 477, 300);
         }
-    }
-    public void act()
-    {
     }
 }
