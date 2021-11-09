@@ -1,14 +1,14 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.*;
+import java.util.*; // Used for mainly ArrayList, Random and Stack
 /**
- * Write a description of class battleWorld here.
+ * A class for the World that the player will use to battle an enemy
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isaac Chan, Kenneth Li 
+ * @version 1.0
  */
 public class battleWorld extends World
 {
-    private Random rand = new Random();
+    private Random rand = new Random(); // To generate random enemy sprite
     
     // Generate a random monster for the enemy from a list of possible monsters
     // Note this is purely cosmetic
@@ -65,7 +65,7 @@ public class battleWorld extends World
     public static GreenfootSound battleMusic = new GreenfootSound("battleMusic.mp3");
     private GreenfootSound bAttack = new GreenfootSound("Quick Attack.mp3");
     private GreenfootSound razorLeafAttack = new GreenfootSound("Razor Leaf.mp3");
-    private GreenfootSound winMusic = new GreenfootSound("victoryMusic.mp3");
+    public static GreenfootSound winMusic = new GreenfootSound("victoryMusic.mp3");
     // Note on sounds: Sometimes BitStream error code 102 is raised
     // I cannot find a specific fix, but it (appears) to stem from having data
     // that isn't part of the sound file being stored in the file. Resaving
