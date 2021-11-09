@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=badGuy
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ badGuy\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ The\ enemies\ the\ player\ will\ encounter\ in\ the\ overworld\r\n\ \r\n\ @author\ Isaac\ Chan,\ Kenneth\ Li\r\n\ @version\ 1.0\r\n
 comment1.params=name\ image
 comment1.target=badGuy(java.lang.String,\ java.lang.String)
-comment1.text=\r\n\ Act\ -\ do\ whatever\ the\ badGuy\ wants\ to\ do.\ This\ method\ is\ called\ whenever\r\n\ the\ 'Act'\ or\ 'Run'\ button\ gets\ pressed\ in\ the\ environment.\r\n
+comment1.text=\r\n\ Constructor\ for\ the\ badGuy\ class.\ Takes\ two\ arguments\r\n\ @param\ name\ The\ position/location\ of\ the\ badGuy,\ essentially\ an\ identifier\r\n\ @param\ image\ The\ sprite\ of\ the\ badGuy\r\n
 comment2.params=guy
 comment2.target=void\ defeat(badGuy)
 comment3.params=

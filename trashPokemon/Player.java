@@ -1,41 +1,44 @@
 import greenfoot.*;
 import java.util.*;
 /**
- * Write a description of class Player here.
+ * A class for the user's character that they will control in the overworld
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isaac Chan, Kenneth Li, Vincent Hsieh 
+ * @version 1.0
  */
 public class Player extends Actor  
 {
-    public static String curWorld;
-    public static int score = 0;
-    public static int[] curPos = {0,0};
-    public static boolean returning = false;
-    public static boolean firstEntry = true;
-    public static badGuy nameOfbadGuy;
-    public static int HP = 100;
-    public static int potions = 3;
+    // These variables could also be stored as a private variable, but would
+    // need appropriate getters and setters
+    public static String curWorld; // Stores the current level the user is on
+    public static int score = 0; // Stores the user's score
+    public static int[] curPos = {0,0}; // Stores the user's position in the overworld
+    public static boolean returning = false; // Is the user returning from a battle?
+    public static boolean firstEntry = true; // Is this the first time the user had entered the level?
+    public static badGuy nameOfbadGuy; // Which badGuy are they fighting?
+    public static int HP = 100; // The user's current health
+    public static int potions = 3; // The number of potions available
     
     int moveX;
     int moveY;
-    //Might need a constructor later to store the trash Pokemon the player owns
+    // Constructor that takes the world the player will be put in as an argument
     public Player(String curWorld){
         
         this.curWorld = curWorld;
-        setImage("trainer(initial).png");
+        setImage("trainer(initial).png"); // The initial sprite of the character
         
     }
-    public void act(){
+    public void act(){ // Act cycle
 
-        MovementControl();
-        nextWorld(curWorld);
+        MovementControl(); // Allows movement/controls movement
+        nextWorld(curWorld); // Go to the next level when possible
         
     }
     public static void adjustScore(int adjustment)
     {
-        score += adjustment;
+        score += adjustment; // Increment score
     }
+    // Method to be called on the startup of a new game to reset variables
     public static void startUp()
     {
         score = 0;
@@ -46,20 +49,27 @@ public class Player extends Actor
         curPos[1] = 0;
         HP = 100;
     }
+    // Movement method
     public void Move(int x, int y){
         setLocation(getX()+x, getY()+y);
     }
+    // Allows the player to take damage
     public static void takeDamage()
     {
-        HP -= 10;
+        HP -= 10; // take 10 damage
     }
+    // Allows the player to heal
     public static void usePotion()
     {
-        potions--;
-        HP = 100;
+        potions--; // Decrease potion count
+        HP = 100; // Heals the player to 100 hp regardless of current hp
     }
+    // Main method to allow movement
     public void MovementControl(){
+        // booleans that store current movement state
         boolean up = false, down = false, left = false, right = false;
+        
+        // if statements to determine current movement state
         if(Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("w")){up=true;}
         if(Greenfoot.isKeyDown("down")||Greenfoot.isKeyDown("s")){down=true;}
         if(Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("a")){left=true;}
@@ -67,8 +77,10 @@ public class Player extends Actor
         GreenfootImage img=new GreenfootImage("trainer(initial).png");
         int img_x=img.getWidth(),img_y=img.getHeight();
         int x=0,y=0;
+        
+        // Booleans for storing collision with ImpassableBox
         boolean upper_hit=false,lower_hit=false,left_hit=false,right_hit=false;
-        for(int junk = 0; junk<3; junk++){
+        for(int junk = 0; junk<3; junk++){ 
             if(up){y-=1;}
             if(down){y+=1;}
             if(left){x-=1;}
@@ -99,17 +111,10 @@ public class Player extends Actor
             if(left_hit){x=Math.max(0,x);}
             if(right_hit){x=Math.min(0,x);}
         }
-        /**
-         * I think it looks better without resetting to intial image after
-         * movement. What do you guys think?
-        if(x==0 && y==0){
-            //setImage("trainer(initial).png");
-        }else{ */
-            if(x>0){setImage("trainer(right).png");}
-            else if(x<0){setImage("trainer(left).png");}
-            if(y>0){SetAnimation("down");}
-            else if(y<0){SetAnimation("up");}
-        //}
+        if(x>0){setImage("trainer(right).png");}
+        else if(x<0){setImage("trainer(left).png");}
+        if(y>0){SetAnimation("down");}
+        else if(y<0){SetAnimation("up");}
         Move(x,y);
     }
     
@@ -155,27 +160,34 @@ public class Player extends Actor
         setImage(cur_frame_name);
         timer.mark();
     }
+    // Handles the movement to another world
     public void nextWorld(String curWorld){
+        // If the Player object is touching any object of the NextLevelBox class
         if(isTouching(NextLevelBox.class)){
             
-            firstEntry = true;
-            if(curWorld.equals("Level One")){
+            firstEntry = true; // First time player is entering the new level
+            if(curWorld.equals("Level One")){ // If on level one
                 mapTwo gameWorld=new mapTwo();
-                Greenfoot.setWorld(gameWorld);
-            }else if (curWorld.equals("Level Two")){
+                Greenfoot.setWorld(gameWorld); // Go to level two
+            }else if (curWorld.equals("Level Two")){ // If on level two
                 mapThree gameWorld=new mapThree();
-                Greenfoot.setWorld(gameWorld);
-            }else if (curWorld.equals("Level Three")){
+                Greenfoot.setWorld(gameWorld); // Go to level one
+            }else if (curWorld.equals("Level Three")){ // If on level three
                 // Go to victory (end game) screen
+                victory gameWorld = new victory();
+                Greenfoot.setWorld(gameWorld);
             }
         } 
+        // If the Player object is touching any object of the badGuy class
         if(isTouching(badGuy.class)){
             curPos[0] = getX(); // Store current X-offset
             curPos[1] = getY(); // Store current Y-offset
+            
+            // Get the badGuy that the user is colliding with (fighting)
             nameOfbadGuy = (badGuy)(getOneIntersectingObject(badGuy.class));
-            returning = true;
-            battleWorld gameWorld=new battleWorld();
-            Greenfoot.setWorld(gameWorld);
+            returning = true; // User will be returning after battle
+            battleWorld gameWorld=new battleWorld(); // new battleWorld()
+            Greenfoot.setWorld(gameWorld); // go to battelWorld
         }
     }
     

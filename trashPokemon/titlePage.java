@@ -1,10 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
-import java.util.*;
 /**
  * Write a description of class titlePage here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isaac Chan, Kenneth Li
+ * @version 1.0
  */
 public class titlePage extends World
 {
@@ -22,11 +21,15 @@ public class titlePage extends World
         Greenfoot.start();
         
         // Stop mapOne music in case of "reset" button usage
+        // In specific cases it won't stop without this if the reset button is pressed
         mapOne.music.stop();
         
         // Stop battleWorld music in case of "reset" button usage
         battleWorld.battleMusic.stop();
+        battleWorld.winMusic.stop();
         
+        // Stop victory music
+        victory.win.stop();
         
         // In case of using Greenfoot's "reset" button, the list of valid bad guys
         // should be cleared in order to reset the enemy spawns

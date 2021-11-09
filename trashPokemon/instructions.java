@@ -26,7 +26,7 @@ public class instructions extends World
         addObject(instructionLabel3, getWidth()/2, getHeight()/6*3);
         addObject(instructionLabel4, getWidth()/2, getHeight()/6*4);
         addObject(instructionLabel5, getWidth()/2, getHeight()/6*5);
-        setBackground("backround.png");
+        setBackground("background.png");
     }
     public void act() {
         if ("space".equals(Greenfoot.getKey())){

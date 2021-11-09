@@ -42,7 +42,6 @@ public class mapThree extends World
         
         mapOne.music.playLoop();
         Player pc = new Player("Level Three");
-        addObject(pc, 800, 30);
         
         if (Player.returning)
         {
