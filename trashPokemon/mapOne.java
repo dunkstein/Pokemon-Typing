@@ -1,13 +1,16 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class MyWorld here.
+ * The first playable map the player will reach
+ * Starts immediately after the instructions world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Kenneth Li, Isaac Chan
+ * @version 1.0
  */
 public class mapOne extends World
 {
+    // Music
     public static GreenfootSound music = new GreenfootSound("routeMusic.mp3");
+    // the enemies
     private badGuy evilOne = new badGuy("topRight1", "enemyOne.png");
     private badGuy evilTwo = new badGuy("midLeft1", "enemyFour.png");
     private badGuy evilThree = new badGuy("bottom1", "enemyFive.png");
@@ -21,9 +24,11 @@ public class mapOne extends World
         super(960, 589, 1);
         setBackground("map1.png");
         
+        // Box to go to next level (bottom right of screen)
         NextLevelBox nextLevel = new NextLevelBox(120, 25);
         addObject(nextLevel, 740, 580);
         
+        // Invisible bounding boxes
         ImpassableBox leftWall = new ImpassableBox (130,650);
         addObject(leftWall, 0,0);
         
@@ -60,19 +65,21 @@ public class mapOne extends World
         ImpassableBox bottom = new ImpassableBox (180,1);
         addObject(bottom, getWidth()/5*3, getHeight()-15);
         
+        // Make music quieter and play on loop
         music.setVolume(15);
         music.playLoop();
-        Player pc = new Player("Level One");
-        if (Player.returning)
+        Player pc = new Player("Level One"); // Player object at level one
+        if (Player.returning) // If the player just fought
         {
-            addObject(pc, Player.curPos[0], Player.curPos[1]);
-            badGuy.defeat(Player.nameOfbadGuy);
-            Player.firstEntry = false;
-            Player.returning = false;
+            // Place at stored position
+            addObject(pc, Player.curPos[0], Player.curPos[1]); 
+            badGuy.defeat(Player.nameOfbadGuy); // remove badGuy
+            Player.firstEntry = false; // Not their first time in the world
+            Player.returning = false; // They are no longer returning from battle
         }
         else
         {
-            addObject(pc, 430, 135);
+            addObject(pc, 430, 135); // default position
         }
         
         // Make all badGuy(s) valid upon first load of the map
@@ -82,6 +89,7 @@ public class mapOne extends World
             evilTwo.makeValid();
             evilThree.makeValid();
         }
+        // If the badGuy is valid, add them to the world
         if(evilOne.validity())
         {
             addObject(evilOne, 810, 135);

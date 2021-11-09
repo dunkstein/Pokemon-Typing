@@ -1,9 +1,9 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class mapTwo here.
+ * The second world the player will enter after the first (mapOne)
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isaac Chan, Kenneth Li 
+ * @version 1.0
  */
 public class mapTwo extends World
 {       
@@ -17,12 +17,15 @@ public class mapTwo extends World
      */
     public mapTwo()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 960x586 cells with a cell size of 1x1 pixels.
         super(960, 586, 1); 
         setBackground("map2.png");
+        
+        // Next level hitbox
         NextLevelBox nextLevel = new NextLevelBox(400, 50);
         addObject(nextLevel, 700, 586);
         
+        // Bounding boxes
         ImpassableBox leftWall = new ImpassableBox (70,586);
         addObject(leftWall, 35, getHeight()/2);
         
@@ -59,19 +62,19 @@ public class mapTwo extends World
         ImpassableBox bottomRightTree = new ImpassableBox (200,125);
         addObject(bottomRightTree, getWidth()/5*2+100, getHeight()/4*3);
         
-        mapOne.music.playLoop();
+        mapOne.music.playLoop(); // Play music on loop
         
-        Player pc = new Player("Level Two");
-        if (Player.returning)
+        Player pc = new Player("Level Two"); // player is on level two
+        if (Player.returning) // Player is returning from battling
         {
-            addObject(pc, Player.curPos[0], Player.curPos[1]);
-            badGuy.defeat(Player.nameOfbadGuy);
-            Player.firstEntry = false;
-            Player.returning = false;
+            addObject(pc, Player.curPos[0], Player.curPos[1]); // Old pos.
+            badGuy.defeat(Player.nameOfbadGuy); // Remove badGuy
+            Player.firstEntry = false; // Not first time in map
+            Player.returning = false; // No longer returning
         }
         else
         {
-            addObject(pc, 750, 40);
+            addObject(pc, 750, 40); // Initial position/default
         }
         
         // Make all badGuy(s) valid upon first load of the map
@@ -81,6 +84,7 @@ public class mapTwo extends World
             evilTwo.makeValid();
             evilThree.makeValid();
         }
+        // If they are valid; place them
         if(evilOne.validity())
         {
             addObject(evilOne, 650, 160);
