@@ -1,12 +1,13 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 /**
- * Write a description of class titlePage here.
+ * The first screen the user will see upon opening the game.
  * 
  * @author Isaac Chan, Kenneth Li
  * @version 1.0
  */
 public class titlePage extends World
 {
+    //visuals
     Label titleLabel = new Label("Trash Pokemon", 100);
     Label startLabel = new Label("Press <space> to Start", 100);
     /**

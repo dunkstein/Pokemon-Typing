@@ -21,8 +21,9 @@ public class instructions extends World
      */
     public instructions()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 960x600 cells with a cell size of 1x1 pixels.
         super(960, 600, 1);
+        //add labels to the screen
         addObject(instructionLabel, getWidth()/2, getHeight()/6);
         addObject(instructionLabel2, getWidth()/2, getHeight()/6*2);
         addObject(instructionLabel3, getWidth()/2, getHeight()/6*3);

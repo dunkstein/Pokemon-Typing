@@ -20,7 +20,7 @@ public class mapOne extends World
      */
     public mapOne()
     {    
-        // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
+        // Create a new world with 960x589 cells with a cell size of 1x1 pixels.
         super(960, 589, 1);
         setBackground("map1.png");
         
@@ -102,8 +102,5 @@ public class mapOne extends World
         {
             addObject(evilThree, 600, 500);
         }
-    }
-    public void act()
-    {
     }
 }

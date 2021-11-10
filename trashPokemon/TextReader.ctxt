@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=TextReader
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ TextReader\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\r\n\ Reads\ in\ words\ in\ a\ pastebin\ from\ a\ URL\ to\ be\ used\ in\ the\ battle\ world\r\n\ \r\n\ @author\ Isaac\ Chan\r\n\ @version\ 1.0\r\n
 comment1.params=list1\ list2
 comment1.target=void\ readInto(java.util.ArrayList,\ java.util.ArrayList)
 numComments=2

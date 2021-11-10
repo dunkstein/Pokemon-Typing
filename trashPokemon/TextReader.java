@@ -3,10 +3,10 @@ import java.net.*;
 import java.io.*;
 
 /**
- * Write a description of class TextReader here.
+ * Reads in words in a pastebin from a URL to be used in the battle world
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author Isaac Chan
+ * @version 1.0
  */
 public class TextReader  
 {
