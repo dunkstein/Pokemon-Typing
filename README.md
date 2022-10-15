@@ -5,7 +5,7 @@ HOW TO START THIS PROJECT: Open in Greenfoot <br/>
 AUTHORS: Kenneth Li, Isaac Chan, Vincent Hsieh <br/>
 USER INSTRUCTIONS: Follow on-screen instructions of game <br/>
 
-![Game Preview](images/preview.png?raw=true "Preview")
+![Game Preview](trashPokemon/images/preview.png?raw=true "Preview")
 
 ------------------------------------------------------------------------
 This game is a parody game of Pokemon, all assets used belong to their respective copyright holders
