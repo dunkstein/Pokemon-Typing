@@ -1,11 +1,11 @@
-PROJECT TITLE: P3A - Trash Pokemon
-PURPOSE OF PROJECT: Game for ICS4U
-VERSION/DATE: 11/9/2021
-HOW TO START THIS PROJECT: Open in Greenfoot
-AUTHORS: Kenneth Li, Isaac Chan, Vincent Hsieh
-USER INSTRUCTIONS: Follow on-screen instructions of game
+PROJECT TITLE: P3A - Trash Pokemon <br/>
+PURPOSE OF PROJECT: Game for ICS4U <br/>
+VERSION/DATE: 11/9/2021 <br/>
+HOW TO START THIS PROJECT: Open in Greenfoot <br/>
+AUTHORS: Kenneth Li, Isaac Chan, Vincent Hsieh <br/>
+USER INSTRUCTIONS: Follow on-screen instructions of game <br/>
 
-
+![Game Preview](images/preview.png?raw=true "Preview")
 
 ------------------------------------------------------------------------
 This game is a parody game of Pokemon, all assets used belong to their respective copyright holders
